@@ -1,0 +1,19 @@
+<div [formGroup]="formGroup">
+    <ng-container *ngFor="let control of getControls()">
+
+        <ng-container *ngIf="isDynamicGroup(control)">
+            <hr>
+            <div class="form-group" [formGroupName]="control.id">
+                <dynamic-form-group [formGroup]="formGroup.controls[control.id]" [dynamicFormGroup]="control"
+                                    [chainPath]="chainPath"></dynamic-form-group>
+            </div>
+        </ng-container>
+
+        <ng-container *ngIf="isDynamicElement(control)">
+            <div class="form-group">
+                <dynamic-form-element [formGroup]="formGroup" [element]="control"></dynamic-form-element>
+            </div>
+        </ng-container>
+
+    </ng-container>
+</div>

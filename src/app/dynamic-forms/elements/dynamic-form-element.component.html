@@ -1,0 +1,13 @@
+<div [formGroup]="formGroup" class="form-group">
+
+    <ng-container *ngIf="hasRenderer()">
+        <ng-template [dynamicElementRenderer]="formRenderer" [element]="element"
+                     [formGroup]="formGroup"></ng-template>
+    </ng-container>
+
+    <ng-container *ngIf="!hasRenderer()">
+        <form-element [element]="element" [formGroup]="formGroup"></form-element>
+    </ng-container>
+
+    <div class="errorMessage">{{element.label}} is required</div>
+</div>

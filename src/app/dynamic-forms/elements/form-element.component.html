@@ -1,0 +1,10 @@
+<ng-container [formGroup]="formGroup" class="form-group">
+    <label [attr.for]="element.id">{{element.label}}</label>
+
+    <div [ngSwitch]="element.controlType">
+        <ng-container *ngSwitchCase="'text'">
+            <input class="form-control" [formControlName]="element.id"
+                   [id]="element.id" [type]="element.type">
+        </ng-container>
+    </div>
+</ng-container>
