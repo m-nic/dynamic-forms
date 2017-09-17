@@ -1,4 +1,3 @@
-import { ValidatorFn } from '@angular/forms';
 
 export class DynamicElement {
 
@@ -12,7 +11,7 @@ export class DynamicElement {
     public order: number;
     public controlType: string;
     public type: string;
-    public validators: ValidatorFn[] = [];
+    public validators: any[] = [];
     public options: { key: string; value: string; }[];
 
     public debounceTime: number = DynamicElement.DEFAULT_DEBOUNCE;
@@ -58,6 +57,11 @@ export class DynamicElement {
 
     setChangeDebounce(debounceTime) {
         this.debounceTime = debounceTime;
+        return this;
+    }
+
+    setValidators(validators: any[]) {
+        this.validators = validators;
         return this;
     }
 }

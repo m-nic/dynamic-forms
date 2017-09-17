@@ -1,4 +1,4 @@
-import { DynamicElement } from '../definitions/dynamic-element.base';
+import { DynamicElement } from '../dynamic-element';
 import { Input, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { DynamicFormService } from '../../dynamic-form.service';

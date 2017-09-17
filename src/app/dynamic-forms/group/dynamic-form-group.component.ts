@@ -2,7 +2,7 @@ import { Component, Input } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { DynamicFormGroup } from './dynamic-form-group';
 import { DynamicFormService } from '../dynamic-form.service';
-import { DynamicElement } from '../elements/definitions/dynamic-element.base';
+import { DynamicElement } from '../elements/dynamic-element';
 
 declare let _: any;
 
@@ -27,7 +27,7 @@ export class DynamicFormGroupComponent {
 
                 this.formGroup.addControl(group.id,
                     this.dynamicFormService.createGroup(
-                        group._controls,
+                        group._elementsArray,
                         this.chainPath
                     )
                 );
@@ -39,13 +39,13 @@ export class DynamicFormGroupComponent {
         return false;
     }
 
-    isDynamicElement(control: DynamicElement): boolean {
-        if (control instanceof DynamicElement) {
-            if (!this.formGroup.controls[control.id]) {
+    isDynamicElement(element: DynamicElement): boolean {
+        if (element instanceof DynamicElement) {
+            if (!this.formGroup.controls[element.id]) {
 
                 this.formGroup.addControl(
-                    control.id,
-                    this.dynamicFormService.createElement(control, this.chainPath)
+                    element.id,
+                    this.dynamicFormService.createElement(element, this.chainPath)
                 );
             }
             return true;
@@ -53,7 +53,7 @@ export class DynamicFormGroupComponent {
         return false;
     }
 
-    getControls() {
-        return this.dynamicFormGroup._controls;
+    getElements() {
+        return this.dynamicFormGroup._elementsArray;
     }
 }

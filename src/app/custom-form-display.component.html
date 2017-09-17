@@ -2,4 +2,5 @@
     <div style="text-align: right">
         <form-element [element]="element" [formGroup]="formGroup"></form-element>
     </div>
+    <element-validation-error [control]="formGroup.controls[element.id]"></element-validation-error>
 </ng-container>

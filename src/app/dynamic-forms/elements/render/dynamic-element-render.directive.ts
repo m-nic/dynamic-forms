@@ -1,5 +1,5 @@
 import { ComponentFactoryResolver, Directive, Input, OnInit, ViewContainerRef } from '@angular/core';
-import { DynamicElement } from '../definitions/dynamic-element.base';
+import { DynamicElement } from '../dynamic-element';
 import { FormGroup } from '@angular/forms';
 import { DynamicElementRendererBase } from './dynamic-element-renderer.base';
 

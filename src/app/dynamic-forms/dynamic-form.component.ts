@@ -1,11 +1,12 @@
-import { AfterViewInit, Component, Input, OnInit } from '@angular/core';
+import { AfterViewInit, ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { DynamicForm } from './dynamic-form';
 import { DynamicFormService } from './dynamic-form.service';
 
 @Component({
     selector: 'dynamic-form',
-    templateUrl: './dynamic-form.component.html'
+    templateUrl: './dynamic-form.component.html',
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DynamicFormComponent implements OnInit, AfterViewInit {
     @Input() dynamicForm: DynamicForm;
@@ -13,7 +14,9 @@ export class DynamicFormComponent implements OnInit, AfterViewInit {
 
     formGroup: FormGroup;
 
-    constructor(private dynamicFormService: DynamicFormService) {
+    constructor(
+        private dynamicFormService: DynamicFormService,
+    ) {
         let fb = new FormBuilder();
         this.formGroup = fb.group({});
 

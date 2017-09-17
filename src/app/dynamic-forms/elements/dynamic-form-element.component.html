@@ -7,7 +7,9 @@
 
     <ng-container *ngIf="!hasRenderer()">
         <form-element [element]="element" [formGroup]="formGroup"></form-element>
-    </ng-container>
 
-    <div class="errorMessage">{{element.label}} is required</div>
+        <div class="errorMessage">
+            <element-validation-error [control]="formGroup.controls[element.id]"></element-validation-error>
+        </div>
+    </ng-container>
 </div>

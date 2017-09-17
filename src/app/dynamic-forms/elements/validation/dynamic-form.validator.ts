@@ -1,24 +1,25 @@
-import { FormGroup } from '@angular/forms';
+import { FormControl } from '@angular/forms';
 
+export class DynamicFormValidator {
 
-export class ValidationService {
+    static getValidatorMessage(errorName: string, error?: any) {
 
-    static getValidatorErrorMessage(
-        validatorName: string,
-        validatorValue?: any
-    ) {
-        let config = (key: string, value: any) => {
-            if (value.customMessage) {
-                return value.customMessage;
-            }
-        };
+        if (error.customMessage) {
+            return error.customMessage;
+        } else {
+            let errorMessages = {
+                'required': 'This field is required'
+            };
 
-        return config(validatorName, validatorValue);
+            return (errorName in errorMessages)
+                ? errorMessages[errorName]
+                : null;
+        }
+
     }
 
-
     static regexValidator(regex: RegExp, message: string = '') {
-        return (input: FormGroup) => {
+        return (input: FormControl) => {
             if (!input.value || regex.test(input.value)) {
                 return null;
             }
@@ -26,8 +27,8 @@ export class ValidationService {
                 'invalidRegex': {
                     customMessage: message
                 }
-            }
-        }
+            };
+        };
     }
 
 

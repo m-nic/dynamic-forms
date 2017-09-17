@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
-import { DynamicElement } from './elements/definitions/dynamic-element.base';
+import { DynamicElement } from './elements/dynamic-element';
 import { DynamicFormGroup } from './group/dynamic-form-group';
 import 'rxjs/add/operator/debounceTime';
 import 'rxjs/add/operator/map';
@@ -21,21 +21,26 @@ export class DynamicFormService {
     }
 
     createElement(element: DynamicElement, chainPath: string[]) {
+
         this.registerPath(element, chainPath.slice());
-        return new FormControl(element.value, element.validators || []);
+        return new FormControl(element.value, element.validators);
     }
 
-    createGroup(controls: (DynamicFormGroup | DynamicElement)[], chainPath: string[]) {
+    createGroup(elements: (DynamicFormGroup | DynamicElement)[], chainPath: string[]) {
         let builtForm = {};
 
         let currentPath = chainPath.slice();
-        for (let control of controls) {
-            if (control instanceof DynamicElement) {
-                builtForm[control.id] = [control.value, control.validators];
-                this.registerPath(control, currentPath);
-            } else if (control instanceof DynamicFormGroup) {
-                chainPath.push(control.id);
-                builtForm[control.id] = this.fb.group({});
+
+        for (let element of elements) {
+
+            if (element instanceof DynamicElement) {
+
+                this.registerPath(element, currentPath);
+                builtForm[element.id] = [element.value, element.validators];
+
+            } else if (element instanceof DynamicFormGroup) {
+                chainPath.push(element.id);
+                builtForm[element.id] = this.fb.group({});
             }
         }
 
@@ -48,12 +53,13 @@ export class DynamicFormService {
 
     registerHandlers(element: DynamicElement) {
         if (element.onChangeHandler instanceof Function) {
-            console.log(element);
-            this.currentForm.get(this.fieldsMapping[element.id])
+            let formControl = this.currentForm.get(this.fieldsMapping[element.id]);
+            formControl
                 .valueChanges
                 .debounceTime(DynamicElement.DEFAULT_DEBOUNCE)
                 .subscribe((value: any) => {
-                    element.onChangeHandler(value, this.fieldsMapping);
+                    formControl.markAsTouched();
+                    element.onChangeHandler(value, this.fieldsMapping, this.currentForm);
                 });
         }
 

@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { DynamicElement } from './dynamic-forms/elements/definitions/dynamic-element.base';
+import { DynamicElement } from './dynamic-forms/elements/dynamic-element';
 import { DynamicElementRendererBase } from './dynamic-forms/elements/render/dynamic-element-renderer.base';
 import { FormGroup } from '@angular/forms';
 import { DynamicFormService } from './dynamic-forms/dynamic-form.service';

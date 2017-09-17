@@ -1,5 +1,6 @@
 <ng-container [formGroup]="formGroup">
     <div style="background: red">
         <form-element [element]="element" [formGroup]="formGroup"></form-element>
+        <element-validation-error [control]="formGroup.controls[element.id]"></element-validation-error>
     </div>
 </ng-container>

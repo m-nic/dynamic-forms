@@ -7,6 +7,7 @@ import { DynamicFormGroupComponent } from './group/dynamic-form-group.component'
 import { DynamicFormElementComponent } from './elements/dynamic-form-element.component';
 import { CustomElementRenderDirective } from './elements/render/dynamic-element-render.directive';
 import { FormElementComponent } from './elements/form-element.component';
+import { ElementValidationErrorComponent } from './elements/validation/element-validation-error.component';
 
 @NgModule({
     imports: [
@@ -19,6 +20,8 @@ import { FormElementComponent } from './elements/form-element.component';
         DynamicFormElementComponent,
         FormElementComponent,
 
+        ElementValidationErrorComponent,
+
         CustomElementRenderDirective,
     ],
     providers: [
@@ -29,6 +32,8 @@ import { FormElementComponent } from './elements/form-element.component';
 
         DynamicFormComponent,
         FormElementComponent,
+
+        ElementValidationErrorComponent,
 
         CustomElementRenderDirective,
     ]

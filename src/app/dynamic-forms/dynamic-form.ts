@@ -1,13 +1,15 @@
 import { DynamicFormGroup } from './group/dynamic-form-group';
-import { DynamicElement } from './elements/definitions/dynamic-element.base';
+import { DynamicElement } from './elements/dynamic-element';
 
 export class DynamicForm extends DynamicFormGroup {
 
-    public _controls: (DynamicFormGroup | DynamicElement)[];
+    public _elementsArray: (DynamicFormGroup | DynamicElement)[];
 
-    controls(controls: (DynamicFormGroup | DynamicElement)[] = []) {
-        this._controls = [
-            new DynamicFormGroup(this.id).controls(controls)];
+    elements(elements: (DynamicFormGroup | DynamicElement)[] = []) {
+        this._elementsArray = [
+            new DynamicFormGroup(this.id)
+                .elements(elements)
+        ];
         return this;
     }
 

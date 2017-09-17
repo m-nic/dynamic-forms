@@ -1,16 +1,16 @@
-import { DynamicElement } from '../elements/definitions/dynamic-element.base';
+import { DynamicElement } from '../elements/dynamic-element';
 
 export class DynamicFormGroup {
 
-    public _controls: (DynamicFormGroup | DynamicElement)[];
+    public _elementsArray: (DynamicFormGroup | DynamicElement)[];
     public renderer: any;
 
     constructor(public id: string) {
 
     }
 
-    controls(controls: (DynamicFormGroup | DynamicElement)[] = []) {
-        this._controls = controls;
+    elements(elements: (DynamicFormGroup | DynamicElement)[] = []) {
+        this._elementsArray = elements;
         return this;
     }
 
