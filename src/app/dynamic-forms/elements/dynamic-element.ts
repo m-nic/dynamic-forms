@@ -9,10 +9,13 @@ export class DynamicElement {
     public placeholder: string;
     public required: boolean;
     public order: number;
+    public mask: (string | RegExp)[] = [];
     public controlType: string;
     public type: string;
     public validators: any[] = [];
     public options: { key: string; value: string; }[];
+
+    cssClass = 'col-xs-12';
 
     public debounceTime: number = DynamicElement.DEFAULT_DEBOUNCE;
 
@@ -64,5 +67,16 @@ export class DynamicElement {
         this.validators = validators;
         return this;
     }
+
+    setMask(mask: (string | RegExp)[]) {
+        this.mask = mask;
+        return this;
+    }
+
+    setCssClass(cssClass: string) {
+        this.cssClass = cssClass;
+        return this;
+    }
+
 }
 

@@ -5,6 +5,8 @@ export class DynamicFormGroup {
     public _elementsArray: (DynamicFormGroup | DynamicElement)[];
     public renderer: any;
 
+    public cssClass: string;
+
     constructor(public id: string) {
 
     }
@@ -16,6 +18,11 @@ export class DynamicFormGroup {
 
     setControlsRenderer(renderer) {
         this.renderer = renderer;
+        return this;
+    }
+
+    setCssClass(cssClass: string) {
+        this.cssClass = cssClass;
         return this;
     }
 }

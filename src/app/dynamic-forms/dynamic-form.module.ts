@@ -8,6 +8,7 @@ import { DynamicFormElementComponent } from './elements/dynamic-form-element.com
 import { CustomElementRenderDirective } from './elements/render/dynamic-element-render.directive';
 import { FormElementComponent } from './elements/form-element.component';
 import { ElementValidationErrorComponent } from './elements/validation/element-validation-error.component';
+import { DynamicElementMaskDirective } from './elements/render/dynamic-element-mask.directive';
 
 @NgModule({
     imports: [
@@ -23,6 +24,7 @@ import { ElementValidationErrorComponent } from './elements/validation/element-v
         ElementValidationErrorComponent,
 
         CustomElementRenderDirective,
+        DynamicElementMaskDirective,
     ],
     providers: [
         DynamicFormService

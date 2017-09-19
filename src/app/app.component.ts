@@ -11,12 +11,7 @@ import { DynamicFormValidator } from './dynamic-forms/elements/validation/dynami
 
 @Component({
     selector: 'app-root',
-    template: `
-        <div>
-            <h2>Job Application for Heroes</h2>
-            <dynamic-form [dynamicForm]="testForm"></dynamic-form>
-        </div>
-    `,
+    templateUrl: './app.component.html',
 })
 export class AppComponent {
     @ViewChild(DynamicFormComponent) formComponent: DynamicFormComponent;
@@ -34,7 +29,8 @@ export class AppComponent {
                     .setType('text')
                     .setValue('')
                     // .setRenderer(CustomFormDisplayComponent2)
-                    .setPlaceholder('')
+                    .setPlaceholder('(123) 123-1231')
+                    .setMask(['(', /[1-9]/, /\d/, /\d/, ')', ' ', /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/])
                     .onChange((data, fieldsMapping, formGroup: FormGroup) => {
                         formGroup.get(fieldsMapping['username']).setValue(data);
                         formGroup.get(fieldsMapping['lan']).disable();
@@ -49,12 +45,15 @@ export class AppComponent {
                 ,
 
                 new DynamicFormGroup('wan')
+                    .setCssClass('col-xs-6')
                     .elements([
                         new DynamicElement('username')
                             .setType('text')
+                            .setCssClass('col-xs-6')
                             .setValue('1'),
 
                         new DynamicFormGroup('ssh')
+                            .setCssClass('col-xs-6')
                             .elements([
                                 new DynamicElement('test')
                                     .setType('text')
@@ -64,6 +63,7 @@ export class AppComponent {
                     ]),
 
                 new DynamicElement('lan')
+                    .setCssClass('col-xs-6')
                     .setType('text')
                     .setValue('1')
                     .setPlaceholder(''),

@@ -2,15 +2,17 @@
     <ng-container *ngFor="let element of getElements()">
 
         <ng-container *ngIf="isDynamicGroup(element)">
-            <hr>
-            <div class="form-group" [formGroupName]="element.id">
-                <dynamic-form-group [formGroup]="formGroup.controls[element.id]" [dynamicFormGroup]="element"
-                                    [chainPath]="chainPath"></dynamic-form-group>
+            <div class="{{ element.cssClass }}" [formGroupName]="element.id">
+                <div class="row">
+                    <dynamic-form-group [formGroup]="formGroup.controls[element.id]" [dynamicFormGroup]="element"
+                                        [chainPath]="chainPath">
+                    </dynamic-form-group>
+                </div>
             </div>
         </ng-container>
 
         <ng-container *ngIf="isDynamicElement(element)">
-            <div class="form-group">
+            <div class="form-group {{ element.cssClass }}">
                 <dynamic-form-element [formGroup]="formGroup" [element]="element"></dynamic-form-element>
             </div>
         </ng-container>
