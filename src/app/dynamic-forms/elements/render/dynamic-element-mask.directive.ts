@@ -10,7 +10,7 @@ export class DynamicElementMaskDirective {
     @Input('textMask')
     set textMask(mask: (string | RegExp)[]) {
 
-        if (typeof vanillaTextMask !== 'undefined') {
+        if (typeof vanillaTextMask !== 'undefined' && mask.length) {
             vanillaTextMask.maskInput({
                 inputElement: this.elRef.nativeElement,
                 showMask: true,

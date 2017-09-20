@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { DynamicFormGroup } from './dynamic-form-group';
 import { DynamicFormService } from '../dynamic-form.service';
@@ -10,27 +10,35 @@ declare let _: any;
     selector: 'dynamic-form-group',
     templateUrl: './dynamic-form-group.component.html',
 })
-export class DynamicFormGroupComponent {
+export class DynamicFormGroupComponent implements OnInit {
     @Input() formGroup: FormGroup;
     @Input() dynamicFormGroup: DynamicFormGroup;
 
     @Input() chainPath: string[] = [];
+    private lastPath = [];
 
     constructor(public dynamicFormService: DynamicFormService) {
     }
 
+    ngOnInit() {
+        this.lastPath = this.chainPath;
+    }
+
     isDynamicGroup(group: DynamicFormGroup): boolean {
+        this.chainPath = this.lastPath;
         if (group instanceof DynamicFormGroup) {
 
             if (!this.formGroup.controls[group.id]) {
-                this.chainPath.push(group.id);
+                let path = this.lastPath.slice().concat([group.id]);
 
                 this.formGroup.addControl(group.id,
                     this.dynamicFormService.createGroup(
                         group._elementsArray,
-                        this.chainPath
+                        path
                     )
                 );
+
+                this.chainPath = path;
             }
 
             return true;

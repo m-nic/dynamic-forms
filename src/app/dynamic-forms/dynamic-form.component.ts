@@ -23,6 +23,15 @@ export class DynamicFormComponent implements OnInit, AfterViewInit {
         this.dynamicFormService.manageForm(this.formGroup);
     }
 
+    getValues() {
+        return this.formGroup.getRawValue();
+    }
+
+    setValues(value: {}) {
+        this.formGroup.patchValue(value);
+    }
+
+
     ngOnInit() {
         if (this.dynamicForm.renderer) {
             this.dynamicFormService.addFormRenderer(this.dynamicForm.renderer);

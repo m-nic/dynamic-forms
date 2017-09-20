@@ -1,4 +1,8 @@
 <div [formGroup]="formGroup" class="form-group">
+    <div class="col-xs-12" *ngIf="element.hasTopDivider">
+        <hr>
+    </div>
+
     <div class="form-group">
         <ng-container *ngIf="hasRenderer()">
             <ng-template [dynamicElementRenderer]="formRenderer" [element]="element"
@@ -12,5 +16,9 @@
                 <element-validation-error [control]="formGroup.controls[element.id]"></element-validation-error>
             </div>
         </ng-container>
+    </div>
+
+    <div class="col-xs-12" *ngIf="element.hasBottomDivider">
+        <hr>
     </div>
 </div>

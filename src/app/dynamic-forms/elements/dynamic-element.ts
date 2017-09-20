@@ -2,11 +2,13 @@
 export class DynamicElement {
 
     public static readonly DEFAULT_DEBOUNCE = 300;
+    public static readonly TYPE_TEXT = 'text';
+    public static readonly TYPE_PASSWORD = 'password';
 
-    public value: string = '';
+    public value = '';
     public renderer: any;
     public label: string;
-    public placeholder: string;
+    private _placeholder = '';
     public required: boolean;
     public order: number;
     public mask: (string | RegExp)[] = [];
@@ -14,6 +16,9 @@ export class DynamicElement {
     public type: string;
     public validators: any[] = [];
     public options: { key: string; value: string; }[];
+
+    hasTopDivider = false;
+    hasBottomDivider = false;
 
     cssClass = 'col-xs-12';
 
@@ -39,8 +44,15 @@ export class DynamicElement {
     }
 
     setPlaceholder(placeholder: string) {
-        this.placeholder = placeholder;
+        this._placeholder = placeholder;
         return this;
+    }
+
+    get placeholder() {
+        return this._placeholder;
+    }
+    set placeholder(placeholder) {
+        this._placeholder = placeholder;
     }
 
     setLabel(label: string) {
@@ -75,6 +87,16 @@ export class DynamicElement {
 
     setCssClass(cssClass: string) {
         this.cssClass = cssClass;
+        return this;
+    }
+
+    setHasTopDivider() {
+        this.hasTopDivider = true;
+        return this;
+    }
+
+    setHasBottomDivider() {
+        this.hasBottomDivider = true;
         return this;
     }
 

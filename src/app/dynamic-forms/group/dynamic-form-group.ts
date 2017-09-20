@@ -7,7 +7,7 @@ export class DynamicFormGroup {
 
     public cssClass: string;
 
-    constructor(public id: string) {
+    constructor(public id?: string) {
 
     }
 
