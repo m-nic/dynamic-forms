@@ -31,6 +31,9 @@ export class DynamicFormComponent implements OnInit, AfterViewInit {
         this.formGroup.patchValue(value);
     }
 
+    getFieldsMapping() {
+        return this.dynamicFormService.fieldsMapping;
+    }
 
     ngOnInit() {
         if (this.dynamicForm.renderer) {

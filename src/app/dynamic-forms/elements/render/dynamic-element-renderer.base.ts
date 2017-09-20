@@ -11,5 +11,6 @@ export abstract class DynamicElementRendererBase implements OnInit {
 
     ngOnInit() {
         this.dynamicFormService.registerHandlers(this.element);
+        this.dynamicFormService.addGetterArguments(this.element);
     }
 }

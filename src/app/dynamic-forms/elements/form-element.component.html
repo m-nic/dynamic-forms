@@ -5,12 +5,12 @@
         <div class="col-xs-12">
 
             <ng-container *ngSwitchCase="'text'">
-                <input class="form-control" [formControlName]="element.id" [placeholder]="element.placeholder"
+                <input class="form-control input-sm" [formControlName]="element.id" [placeholder]="element.placeholder"
                        [id]="element.id" type="text" [textMask]="element.mask">
             </ng-container>
 
             <ng-container *ngSwitchCase="'password'">
-                <input class="form-control" [formControlName]="element.id" [placeholder]="element.placeholder"
+                <input class="form-control input-sm" [formControlName]="element.id" [placeholder]="element.placeholder"
                        [id]="element.id" type="password" [textMask]="element.mask">
             </ng-container>
 

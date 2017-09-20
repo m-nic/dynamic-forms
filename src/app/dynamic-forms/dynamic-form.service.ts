@@ -62,8 +62,10 @@ export class DynamicFormService {
                     element.onChangeHandler(value, this.fieldsMapping, this.currentForm);
                 });
         }
+    }
 
-
+    addGetterArguments(element: DynamicElement) {
+        element.getterArguments = [element, this.fieldsMapping, this.currentForm];
     }
 
     addFormRenderer(formRenderer: any) {
