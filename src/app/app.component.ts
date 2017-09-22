@@ -7,6 +7,7 @@ import { CustomFormDisplayComponent } from './custom-form-display.component';
 import { CustomFormDisplayComponent2 } from './custom-form-display2.component';
 import { FormGroup, Validators } from '@angular/forms';
 import { DynamicFormValidator } from './dynamic-forms/elements/validation/dynamic-form.validator';
+import { DynamicFormArray } from './dynamic-forms/group/dynamic-form-array';
 
 
 @Component({
@@ -37,6 +38,21 @@ export class AppComponent {
                                     .setType(DynamicElement.TYPE_TEXT)
                                     .setLabel('Hostname')
                                     .setPlaceholder('hostname')
+                                    .setHasBottomDivider(),
+                            ]),
+
+                        new DynamicFormArray('qwe')
+                            .elements([
+                                new DynamicElement('test24')
+                                    .setType(DynamicElement.TYPE_TEXT)
+                                    .setLabel('zzzz')
+                                    .setPlaceholder('zzzzz')
+                                    .setHasBottomDivider(),
+
+                                new DynamicElement('test223')
+                                    .setType(DynamicElement.TYPE_TEXT)
+                                    .setLabel('zzzz')
+                                    .setPlaceholder('zzzz')
                                     .setHasBottomDivider(),
                             ])
                     ]),
@@ -124,6 +140,10 @@ export class AppComponent {
         //             .setValue('1')
         //             .setPlaceholder(''),
         //     ]);
+    }
+
+    ngAfterViewInit() {
+        console.log(this.formComponent);
     }
 
 }

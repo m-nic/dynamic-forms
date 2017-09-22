@@ -5,10 +5,13 @@ import { DynamicFormService } from '../dynamic-form.service';
 
 @Component({
     selector: 'dynamic-form-element',
-    templateUrl: './dynamic-form-element.component.html'
+    templateUrl: './dynamic-form-element.component.html',
+    styles: [
+        `.divider-holder hr { margin-top: 20px; margin-bottom: 0; }`
+    ]
 })
 export class DynamicFormElementComponent {
-    @Input() formGroup: FormGroup;
+    @Input() fg: FormGroup;
     @Input() element: DynamicElement;
 
     formRenderer: any;
@@ -18,7 +21,9 @@ export class DynamicFormElementComponent {
     }
 
     hasRenderer() {
-        if (this.element.renderer) {
+        if (this.element.renderer === false) {
+            return false;
+        } else if (this.element.renderer) {
             this.formRenderer = this.element.renderer;
             return true;
         } else if (this.dynamicFormService.formRenderer) {

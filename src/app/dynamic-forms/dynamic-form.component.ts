@@ -1,34 +1,45 @@
-import { AfterViewInit, ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
+import {
+    AfterViewInit, ChangeDetectionStrategy, Component, Input, OnInit, ViewChild,
+    ViewEncapsulation
+} from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { DynamicForm } from './dynamic-form';
 import { DynamicFormService } from './dynamic-form.service';
+import { DynamicFormGroup } from './group/dynamic-form-group';
 
 @Component({
     selector: 'dynamic-form',
     templateUrl: './dynamic-form.component.html',
-    changeDetection: ChangeDetectionStrategy.OnPush
+    encapsulation: ViewEncapsulation.None,
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    styles: [
+        `.form-group { margin-bottom: 10px; }`
+    ]
 })
 export class DynamicFormComponent implements OnInit, AfterViewInit {
-    @Input() dynamicForm: DynamicForm;
+    @Input() dynamicFormGroupConfig: DynamicFormGroup;
 
-
-    formGroup: FormGroup;
+    fg: FormGroup;
 
     constructor(
         private dynamicFormService: DynamicFormService,
     ) {
-        let fb = new FormBuilder();
-        this.formGroup = fb.group({});
+        this.dynamicFormService.fieldsMapping = [];
+        this.dynamicFormService.arrayFields = [];
 
-        this.dynamicFormService.manageForm(this.formGroup);
+        let fb = new FormBuilder();
+        this.fg = fb.group({});
+
+        this.dynamicFormService.manageForm(this.fg);
     }
 
     getValues() {
-        return this.formGroup.getRawValue();
+        return this.dynamicFormService.flattenArrays(
+            this.fg.getRawValue()
+        );
     }
 
     setValues(value: {}) {
-        this.formGroup.patchValue(value);
+        this.fg.patchValue(value);
     }
 
     getFieldsMapping() {
@@ -36,9 +47,11 @@ export class DynamicFormComponent implements OnInit, AfterViewInit {
     }
 
     ngOnInit() {
-        if (this.dynamicForm.renderer) {
-            this.dynamicFormService.addFormRenderer(this.dynamicForm.renderer);
+        if (this.dynamicFormGroupConfig.renderer) {
+            this.dynamicFormService.addFormRenderer(this.dynamicFormGroupConfig.renderer);
         }
+
+        this.fg.markAsTouched();
     }
 
     ngAfterViewInit() {

@@ -6,10 +6,11 @@ import { DynamicFormService } from '../dynamic-form.service';
 
 @Component({
     selector: 'form-element',
-    templateUrl: './form-element.component.html'
+    templateUrl: './form-element.component.html',
+    styleUrls: [ './form-element.component.scss' ]
 })
 export class FormElementComponent extends DynamicElementRendererBase {
-    @Input() formGroup: FormGroup;
+    @Input() fg: FormGroup;
     @Input() element: DynamicElement;
 
     constructor(protected dynamicFormService: DynamicFormService) {
