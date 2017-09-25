@@ -10,8 +10,7 @@ export class DynamicFormArray {
     public maxAddLimit = 0;
     public cssClass: string;
 
-    public getterArguments = [];
-
+    public _visible: boolean | Function = true;
 
     constructor(public id?: string) {
 
@@ -39,6 +38,18 @@ export class DynamicFormArray {
 
     setCssClass(cssClass: string) {
         this.cssClass = cssClass;
+        return this;
+    }
+
+    get visible() {
+        if (this._visible instanceof Function) {
+            return this._visible();
+        }
+        return this._visible;
+    }
+
+    setVisibility(visible: boolean | Function = true) {
+        this._visible = visible;
         return this;
     }
 }

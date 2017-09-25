@@ -78,7 +78,7 @@ export class DynamicElement {
     public onChangeHandler: Function = null;
 
     constructor(public id?: string, label?: string) {
-        this.label = label || id;
+        this.label = label || '';
     }
 
     setType(controlType: string | Function) {

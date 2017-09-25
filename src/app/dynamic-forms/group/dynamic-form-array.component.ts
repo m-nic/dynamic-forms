@@ -1,4 +1,4 @@
-import { Component, Input, ChangeDetectorRef, OnInit } from '@angular/core';
+import { Component, Input, ChangeDetectorRef, OnInit, EventEmitter, Output } from '@angular/core';
 import { DynamicFormArray } from './dynamic-form-array';
 import { FormGroup, FormBuilder, FormArray } from '@angular/forms';
 import { DynamicElement } from '../elements/dynamic-element';
@@ -11,15 +11,16 @@ import { DynamicFormGroup } from './dynamic-form-group';
 export class DynamicFormArrayComponent implements OnInit {
     @Input() fg: FormArray;
     @Input() dynamicFormArray: DynamicFormArray;
+    @Output() elementEvent: EventEmitter<any> = new EventEmitter();
 
-    constructor(private cdRef: ChangeDetectorRef) {
-    }
+    constructor(private cdRef: ChangeDetectorRef) {}
 
     ngOnInit() {
         let patchValue = this.fg.patchValue;
         this.fg.patchValue = (value: any, options?: Object) => {
-
             if (this.dynamicFormArray.elementGenerate) {
+                this.fg.controls = [];
+                this.dynamicFormArray._elementsArray = [];
 
                 for (let i of value) {
                     (this.fg as FormArray).push(
@@ -71,5 +72,11 @@ export class DynamicFormArrayComponent implements OnInit {
 
             this.dynamicFormArray._elementsArray.push(this.dynamicFormArray.elementGenerate);
         }
+    }
+
+
+    emitEvent($event, i) {
+        this.handleRemove($event, i);
+        this.elementEvent.emit($event);
     }
 }

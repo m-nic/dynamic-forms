@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormArray, FormGroup } from '@angular/forms';
 import { DynamicFormGroup } from './dynamic-form-group';
 import { DynamicFormService } from '../dynamic-form.service';
@@ -14,6 +14,8 @@ import 'rxjs/add/operator/debounceTime';
 export class DynamicFormGroupComponent implements OnInit {
     @Input() fg: FormGroup;
     @Input() dynamicFormGroup: DynamicFormGroup;
+    @Output() elementEvent: EventEmitter<any> = new EventEmitter();
+
 
     @Input() chainPath: string[] = [];
     private lastPath = [];
@@ -79,5 +81,9 @@ export class DynamicFormGroupComponent implements OnInit {
 
     getFields() {
         return this.dynamicFormGroup._elementsArray;
+    }
+
+    emitEvent($event) {
+        this.elementEvent.emit($event);
     }
 }
