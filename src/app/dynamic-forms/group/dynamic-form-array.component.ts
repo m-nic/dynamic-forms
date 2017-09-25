@@ -1,4 +1,4 @@
-import { Component, Input, ChangeDetectorRef, OnInit, EventEmitter, Output } from '@angular/core';
+import { Component, Input, ChangeDetectorRef, OnInit, EventEmitter, Output, ViewEncapsulation } from '@angular/core';
 import { DynamicFormArray } from './dynamic-form-array';
 import { FormGroup, FormBuilder, FormArray } from '@angular/forms';
 import { DynamicElement } from '../elements/dynamic-element';
@@ -6,7 +6,8 @@ import { DynamicFormGroup } from './dynamic-form-group';
 
 @Component({
     selector: 'dynamic-form-array',
-    templateUrl: './dynamic-form-array.component.html'
+    templateUrl: './dynamic-form-array.component.html',
+    encapsulation: ViewEncapsulation.None,
 })
 export class DynamicFormArrayComponent implements OnInit {
     @Input() fg: FormArray;

@@ -1,5 +1,7 @@
 <ng-container [formGroup]="fg">
-    <label *ngIf="element.label" [attr.for]="element.id" class="col-xs-12 col-sm-5 control-label text-right">{{ element.label }}</label>
+    <label [attr.for]="element.id" class="col-xs-12 col-sm-5 control-label text-right">
+        <span *ngIf="element.label">{{ element.label }}</span>
+    </label>
 
     <ng-container [ngSwitch]="element.controlType">
         <div class="col-xs-12 col-sm-7">

@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, ViewEncapsulation } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { DynamicElement } from './dynamic-element';
 import { DynamicFormService } from '../dynamic-form.service';
@@ -6,6 +6,7 @@ import { DynamicFormService } from '../dynamic-form.service';
 @Component({
     selector: 'dynamic-form-element',
     templateUrl: './dynamic-form-element.component.html',
+    encapsulation: ViewEncapsulation.None,
     styles: [
         `.divider-holder hr { margin-top: 20px; margin-bottom: 0; }`
     ]

@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output, ViewEncapsulation } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { DynamicElement } from './dynamic-element';
 import { DynamicElementRendererBase } from './render/dynamic-element-renderer.base';
@@ -7,7 +7,8 @@ import { DynamicFormService } from '../dynamic-form.service';
 @Component({
     selector: 'form-element',
     templateUrl: './form-element.component.html',
-    styleUrls: [ './form-element.component.scss' ]
+    styleUrls: [ './form-element.component.scss' ],
+    encapsulation: ViewEncapsulation.None,
 })
 export class FormElementComponent extends DynamicElementRendererBase {
     @Input() fg: FormGroup;

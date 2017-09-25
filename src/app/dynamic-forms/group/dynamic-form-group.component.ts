@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, ViewEncapsulation } from '@angular/core';
 import { FormArray, FormGroup } from '@angular/forms';
 import { DynamicFormGroup } from './dynamic-form-group';
 import { DynamicFormService } from '../dynamic-form.service';
@@ -10,6 +10,7 @@ import 'rxjs/add/operator/debounceTime';
 @Component({
     selector: 'dynamic-form-group',
     templateUrl: './dynamic-form-group.component.html',
+    encapsulation: ViewEncapsulation.None,
 })
 export class DynamicFormGroupComponent implements OnInit {
     @Input() fg: FormGroup;

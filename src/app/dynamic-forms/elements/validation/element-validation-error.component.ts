@@ -1,10 +1,11 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, ViewEncapsulation } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { DynamicFormValidator } from './dynamic-form.validator';
 
 @Component({
     selector: 'element-validation-error',
-    templateUrl: './element-validation-error.component.html'
+    templateUrl: './element-validation-error.component.html',
+    encapsulation: ViewEncapsulation.None,
 })
 export class ElementValidationErrorComponent {
     @Input() control: FormControl;
