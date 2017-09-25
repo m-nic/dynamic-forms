@@ -8,6 +8,7 @@ export class DynamicElement {
     public static readonly TYPE_CHECKBOX = 'checkbox';
 
     public getterArguments = [];
+    public isRemovable = false;
 
     /**
      * Define value  property with setter and getter
@@ -77,7 +78,7 @@ export class DynamicElement {
     public onChangeHandler: Function = null;
 
     constructor(public id?: string, label?: string) {
-        this.label = label || '';
+        this.label = label || id;
     }
 
     setType(controlType: string | Function) {
@@ -138,6 +139,11 @@ export class DynamicElement {
 
     setHasBottomDivider() {
         this.hasBottomDivider = true;
+        return this;
+    }
+
+    setIsRemovable() {
+        this.isRemovable = true;
         return this;
     }
 

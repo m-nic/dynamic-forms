@@ -1,6 +1,6 @@
-<ng-container [formGroup]="formGroup">
+<ng-container [formGroup]="fg">
     <div style="text-align: right">
-        <form-element [element]="element" [formGroup]="formGroup"></form-element>
+        <form-element [element]="element" [fg]="fg"></form-element>
     </div>
-    <element-validation-error [control]="formGroup.controls[element.id]"></element-validation-error>
+    <element-validation-error [control]="fg.controls[element.id]"></element-validation-error>
 </ng-container>

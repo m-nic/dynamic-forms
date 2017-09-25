@@ -9,7 +9,7 @@ import { DynamicFormService } from './dynamic-forms/dynamic-form.service';
 })
 export class CustomFormDisplayComponent2 extends DynamicElementRendererBase {
     @Input() element: DynamicElement;
-    @Input() formGroup: FormGroup;
+    @Input() fg: FormGroup;
 
     constructor(protected dynamicFormService: DynamicFormService) {
         super(dynamicFormService);

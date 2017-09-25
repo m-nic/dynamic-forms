@@ -4,6 +4,8 @@ import { DynamicFormGroup } from './dynamic-form-group';
 import { DynamicFormService } from '../dynamic-form.service';
 import { DynamicElement } from '../elements/dynamic-element';
 import { DynamicFormArray } from './dynamic-form-array';
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/debounceTime';
 
 @Component({
     selector: 'dynamic-form-group',
