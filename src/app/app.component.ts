@@ -18,6 +18,7 @@ export class AppComponent {
     constructor() {
 
         this.testForm = new DynamicFormGroup()
+            .setControlsRenderer(CustomFormDisplayComponent)
             .elements([
 
                 new DynamicFormGroup('network')

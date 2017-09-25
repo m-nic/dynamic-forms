@@ -32,10 +32,10 @@ export class CustomElementRenderDirective implements OnInit {
 
             let component = this.viewContainerRef.createComponent(componentFactory);
             let instance = component.instance;
+
             instance['element'] = this.element;
             instance['fg'] = this.fg;
             instance['elementEvent'] = this.elementEvent;
         }
-
     }
 }
