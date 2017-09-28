@@ -1,2 +1,2 @@
-# ng-dynamic-forms
-NG dynamic forms implementation
+# dynamic-forms
+NG4 dynamic forms implementation
